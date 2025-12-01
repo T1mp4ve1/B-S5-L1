@@ -8,6 +8,7 @@ namespace Biblioteca.Models
         public Guid BookID { get; set; }
         public string? BookName { get; set; }
         public string? ReleaseYear { get; set; }
+        public decimal Price { get; set; }
 
         // foreign key
         public Guid AuthorID { get; set; }
