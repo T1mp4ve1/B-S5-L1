@@ -4,7 +4,7 @@
 
 <h3>Aggiungi autore</h3>
 <form asp-action="Create" method="post" class="d-flex mb-3">
-    <input type="text" name="Pseudonym" class="form-control w-25 me-1" required/>
+    <input type="text" name="Pseudonym" class="form-control w-25 me-1" required />
     <button type="submit" class="btn btn-outline-success">+</button>
 </form>
 
@@ -12,7 +12,7 @@
     <thead>
         <tr>
             <th>Pseudonimo</th>
-            <th>ID</th>           
+            <th>ID</th>
             <th>Modifica</th>
             <th>Rimuovi</th>
         </tr>
@@ -23,21 +23,46 @@
             <tr>
                 <td><strong>@A.Pseudonym</strong></td>
                 <td>@A.AuthorID</td>
+
+                @*EDIT*@
                 <td>
-                    <a 
-                        asp-controller="Author" 
-                        asp-action="Edit"
-                        class="btn btn-outline-warning"
-                        style="width: 30px; height: 30px">
-                    </a>
+                    <a asp-controller="Author" asp-action="Edit"
+                       class="btn btn-outline-warning">=</a>
                 </td>
+
+                @* DELETE *@
                 <td>
-                    <a 
-                        asp-controller="Author" 
-                        asp-action="Delete"
-                        class="btn btn-outline-danger"
-                        style="width: 30px; height: 30px">
-                    </a>
+                    <!-- Bottone per aprire la modal -->
+                    <button type="button" class="btn btn-outline-danger"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal-@A.AuthorID">
+                        -
+                    </button>
+
+                    <!-- Modal di conferma -->
+                    <div class="modal fade" id="deleteModal-@A.AuthorID" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Conferma eliminazione</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Sei sicuro di voler eliminare l'autore "<strong>@A.Pseudonym</strong>"?
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                    <form asp-action="Delete" 
+                                    asp-route-id="@A.AuthorID" 
+                                    method="post" 
+                                    class="d-inline">
+                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         }

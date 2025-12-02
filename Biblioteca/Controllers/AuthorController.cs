@@ -66,19 +66,9 @@ namespace Biblioteca.Controllers
             return View(author);
         }
 
-        //DELETE: GET
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var author = await _authorService.GetByIdAsync(id);
-            if (author == null)
-            {
-                return NotFound();
-            }
-            return View(author);
-        }
         //DELETE: POST
         [HttpPost]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             await _authorService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));

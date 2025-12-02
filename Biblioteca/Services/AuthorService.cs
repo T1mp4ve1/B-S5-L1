@@ -16,7 +16,9 @@ namespace Biblioteca.Services
         //ALL
         public async Task<List<Author>> GetAllAsync()
         {
-            return await _context.AuthorS.ToListAsync();
+            return await _context.AuthorS
+                .OrderBy(a => a.Pseudonym)
+                .ToListAsync();
         }
 
         //BY ID
