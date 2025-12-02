@@ -26,18 +26,51 @@
 
                 <!--EDIT-->
                 <td>
-                    <a asp-controller="Author" asp-action="Edit"
-                       class="btn btn-outline-warning">=</a>
+
+                    <!-- Bottone per aprire la modal -->
+                    <i class="bi bi-pencil-square fs-3"
+                       type="button"
+                       data-bs-toggle="modal"
+                       data-bs-target="#modifyModal-@A.AuthorID">
+                    </i>
+
+                    <div class="modal fade" id="modifyModal-@A.AuthorID" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Conferma modifiche</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Inserisci nome desiderato "<strong>@A.Pseudonym</strong>"?
+                                </div>
+
+                                <!-- modifica -->
+                                <div class="modal-footer">
+                                    
+                                    <form asp-action="Edit"
+                                          asp-route-id="@A.AuthorID"
+                                          method="post"
+                                          class="d-flex">
+                                        <input type="hidden" name="AuthorID" value="@A.AuthorID" />
+                                        <input type="text" name="Pseudonym" value="@A.Pseudonym" class="form-control me-1" required />
+                                        <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Annulla</button>
+                                        <button type="submit" class="btn btn-danger me-1">Modifica</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
 
                 <!-- DELETE -->
                 <td>
                     <!-- Bottone per aprire la modal -->
-                    <button type="button" class="btn btn-outline-danger"
-                            data-bs-toggle="modal"
-                            data-bs-target="#deleteModal-@A.AuthorID">
-                        -
-                    </button>
+                    <i class="bi bi-x-circle-fill fs-4 text-danger"
+                       type="button"
+                       data-bs-toggle="modal"
+                       data-bs-target="#deleteModal-@A.AuthorID">
+                   </i>
 
                     <!-- Modal di conferma -->
                     <div class="modal fade" id="deleteModal-@A.AuthorID" tabindex="-1" aria-hidden="true">
@@ -58,7 +91,7 @@
                                     asp-route-id="@A.AuthorID" 
                                     method="post" 
                                     class="d-inline">
-                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                        <button type="submit" class="btn btn-danger">Elimina</button>
                                     </form>
                                 </div>
                             </div>

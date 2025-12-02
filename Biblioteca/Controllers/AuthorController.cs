@@ -44,15 +44,15 @@ namespace Biblioteca.Controllers
         }
 
         //UPDATE: GET
-        public async Task<IActionResult> Edit(Guid id)
-        {
-            var author = await _authorService.GetByIdAsync(id);
-            if (author == null)
-            {
-                return NotFound();
-            }
-            return View(author);
-        }
+        //public async Task<IActionResult> Edit(Guid id)
+        //{
+        //    var author = await _authorService.GetByIdAsync(id);
+        //    if (author == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(author);
+        //}
 
         //UPDATE: POST
         [HttpPost]
