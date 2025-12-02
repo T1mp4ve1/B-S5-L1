@@ -5,9 +5,9 @@ namespace Biblioteca.Models
     public class SingleBook
     {
         [Key]
-        public Guid BookID { get; set; } = Guid.NewGuid();
+        public Guid BookID { get; set; }
         public string? BookName { get; set; }
-        public string? ReleaseYear { get; set; }
+        public int ReleaseYear { get; set; }
         public decimal Price { get; set; }
 
         // foreign key
