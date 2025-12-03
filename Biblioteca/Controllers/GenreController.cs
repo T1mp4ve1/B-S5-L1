@@ -34,8 +34,23 @@ namespace Biblioteca.Controllers
             return View(genres);
         }
         //UPDATE
+        [HttpPost]
+        public async Task<IActionResult> Edit(Genre genre)
+        {
+            if (ModelState.IsValid)
+            {
+                await _genreService.UpdateAsync(genre);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(genre);
+        }
 
         //DELETE
-
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _genreService.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

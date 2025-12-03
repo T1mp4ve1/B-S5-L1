@@ -1,1 +1,104 @@
-﻿<h2 class="text-center">Genres</h2>
+﻿@model IEnumerable<Biblioteca.Models.Genre>
+
+<h2 class="text-center">Genres</h2>
+
+<h3>Aggiungi nuovo</h3>
+<form asp-action="Create" method="post" class="d-flex mb-3">
+    <input type="text" name="GenreName" class="form-control w-25 me-1" required />
+    <button type="submit" class="btn btn-outline-success">+</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>ID</th>
+            <th>Modifica</th>
+            <th>Rimuovi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var G in Model)
+        {
+            <tr>
+                <td><strong>@G.GenreName</strong></td>
+                <td>@G.GenreID</td>
+
+                <!--EDIT-->
+                <td>
+
+                    <!-- Bottone per aprire la modal -->
+                    <i class="bi bi-pencil-square fs-3"
+                       type="button"
+                       data-bs-toggle="modal"
+                       data-bs-target="#modifyModal-@G.GenreID">
+                    </i>
+
+                    <div class="modal fade" id="modifyModal-@G.GenreID" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Conferma modifiche</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Inserisci nome desiderato "<strong>@G.GenreName</strong>"?
+                                </div>
+
+                                <!-- modifica -->
+                                <div class="modal-footer">
+
+                                    <form asp-action="Edit"
+                                          asp-route-id="@G.GenreID"
+                                          method="post"
+                                          class="d-flex">
+                                        <input type="hidden" name="GenreID" value="@G.GenreID" />
+                                        <input type="text" name="GenreName" value="@G.GenreName" class="form-control me-1" required />
+                                        <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Annulla</button>
+                                        <button type="submit" class="btn btn-danger me-1">Modifica</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+                <!-- DELETE -->
+                <td>
+                    <!-- Bottone per aprire la modal -->
+                    <i class="bi bi-x-circle-fill fs-4 text-danger"
+                       type="button"
+                       data-bs-toggle="modal"
+                       data-bs-target="#deleteModal-@G.GenreID">
+                    </i>
+
+                    <!-- Modal di conferma -->
+                    <div class="modal fade" id="deleteModal-@G.GenreID" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Conferma eliminazione</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Sei sicuro di voler eliminare l'autore "<strong>@G.GenreName</strong>"?
+                                </div>
+
+                                <!-- Cancella -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                    <form asp-action="Delete"
+                                          asp-route-id="@G.GenreID"
+                                          method="post"
+                                          class="d-inline">
+                                        <button type="submit" class="btn btn-danger">Elimina</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

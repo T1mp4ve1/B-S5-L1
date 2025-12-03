@@ -45,7 +45,7 @@ namespace Biblioteca.Controllers
 
         //UPDATE: POST
         [HttpPost]
-        public async Task<IActionResult> Edit(Author author, Guid id)
+        public async Task<IActionResult> Edit(Author author)
         {
             if (ModelState.IsValid)
             {
