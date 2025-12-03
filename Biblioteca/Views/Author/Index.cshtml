@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Biblioteca.Models.Author>
 
-<h1 class="text-center">Lista autori</h1>
+<h1 class="text-center">Lista autori (@Model.Count())</h1>
 
 <h3>Aggiungi autore</h3>
 <form asp-action="Create" method="post" class="d-flex mb-3">

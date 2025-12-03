@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Biblioteca.Models.Genre>
 
-<h2 class="text-center">Genres</h2>
+<h2 class="text-center">Genres (@Model.Count())</h2>
 
 <h3>Aggiungi nuovo</h3>
 <form asp-action="Create" method="post" class="d-flex mb-3">
