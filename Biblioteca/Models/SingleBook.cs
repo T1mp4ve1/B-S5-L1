@@ -6,12 +6,21 @@ namespace Biblioteca.Models
     {
         [Key]
         public Guid BookID { get; set; }
-        public string? BookName { get; set; }
+        [Required]
+        public string BookName { get; set; }
+        [Required]
         public int ReleaseYear { get; set; }
-        public decimal Price { get; set; }
+        [Required]
+        public int Quantity { get; set; }
+        [Required]
+        public string CoverIMG { get; set; }
+        [Required]
+        public string Description { get; set; }
 
         // foreign key
+        [Required]
         public Guid AuthorID { get; set; }
+        [Required]
         public int GenreID { get; set; }
 
         // navigation

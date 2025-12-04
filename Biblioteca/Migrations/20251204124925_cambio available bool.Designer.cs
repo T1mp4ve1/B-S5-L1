@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251201150021_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251204124925_cambio available bool")]
+    partial class cambioavailablebool
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,14 +64,22 @@ namespace Biblioteca.Migrations
                     b.Property<Guid>("AuthorID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("Available")
+                        .HasColumnType("bit");
+
                     b.Property<string>("BookName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CoverIMG")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GenreID")
                         .HasColumnType("int");
 
-                    b.Property<string>("ReleaseYear")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ReleaseYear")
+                        .HasColumnType("int");
 
                     b.HasKey("BookID");
 

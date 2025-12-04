@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251201160336_addPriceToBook")]
-    partial class addPriceToBook
+    [Migration("20251204124535_initial migration a")]
+    partial class initialmigrationa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,17 +64,22 @@ namespace Biblioteca.Migrations
                     b.Property<Guid>("AuthorID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal>("Available")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("BookName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CoverIMG")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GenreID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ReleaseYear")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ReleaseYear")
+                        .HasColumnType("int");
 
                     b.HasKey("BookID");
 

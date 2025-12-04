@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Biblioteca.Models.SingleBook>
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+<h3>Aggiungi libro</h3>
+<form asp-action="Create" method="post" class="mb-3">
+    <label class="form-label m-0">Titolo libro</label>
+    <input type="text" name="BookName" class="form-control w-50 mb-2" required />
+
+    <label class="form-label m-0">Anno d'uscita</label>
+    <input type="text" name="ReleaseYear" class="form-control w-50 mb-2" required />
+
+    <label class="form-label m-0">Quntita'</label>
+    <input type="text" name="Quantity" class="form-control w-50 mb-2" required />
+
+    <label class="form-label m-0">URL imagine</label>
+    <input type="text" name="CoverIMG" class="form-control w-50 mb-2" required />
+
+    <label class="form-label m-0">Autore</label>
+    <select name="AuthorID" asp-items="(SelectList)ViewBag.Authors" class="form-select w-50 mb-2" required>
+        <option value="">-- Seleziona autore --</option>
+        @foreach (var a in (SelectList)ViewBag.Authors)
+        {
+            <option value="@a.Value">@a.Text</option>
+        }
+    </select>
+
+    <label class="form-label m-0">Genere</label>
+    <select name="GenreID" asp-items="(SelectList)ViewBag.Genres" class="form-select w-50 mb-2" required>
+        <option value="">-- Seleziona genere --</option>
+        @foreach (var g in (SelectList)ViewBag.Genres)
+        {
+            <option value="@g.Value">@g.Text</option>
+        }
+    </select>
+
+    <label class="form-label m-0">Descrizione</label>
+    <textarea type="text" name="Description" class="form-control w-50 mb-2" required></textarea>
+    <button type="submit" class="btn btn-outline-success">+</button>
+</form>
+
+<hr />
+
+<h4>Libri esistenti</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titolo</th>
+            <th>Autore</th>
+            <th>Genere</th>
+            <th>Anno</th>
+            <th>Quantità</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>@b.BookName</td>
+                <td>@b.Author?.Pseudonym</td>
+                <td>@b.Genre?.GenreName</td>
+                <td>@b.ReleaseYear</td>
+                <td>@b.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>

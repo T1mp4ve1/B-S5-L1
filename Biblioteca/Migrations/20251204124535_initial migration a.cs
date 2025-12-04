@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Biblioteca.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialmigrationa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,8 +41,10 @@ namespace Biblioteca.Migrations
                 columns: table => new
                 {
                     BookID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ReleaseYear = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BookName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReleaseYear = table.Column<int>(type: "int", nullable: false),
+                    Available = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CoverIMG = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AuthorID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GenreID = table.Column<int>(type: "int", nullable: false)
                 },
