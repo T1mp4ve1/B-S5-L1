@@ -18,19 +18,11 @@
     <label class="form-label m-0">Autore</label>
     <select name="AuthorID" asp-items="(SelectList)ViewBag.Authors" class="form-select w-50 mb-2" required>
         <option value="">-- Seleziona autore --</option>
-        @foreach (var a in (SelectList)ViewBag.Authors)
-        {
-            <option value="@a.Value">@a.Text</option>
-        }
     </select>
 
     <label class="form-label m-0">Genere</label>
     <select name="GenreID" asp-items="(SelectList)ViewBag.Genres" class="form-select w-50 mb-2" required>
         <option value="">-- Seleziona genere --</option>
-        @foreach (var g in (SelectList)ViewBag.Genres)
-        {
-            <option value="@g.Value">@g.Text</option>
-        }
     </select>
 
     <label class="form-label m-0">Descrizione</label>

@@ -13,9 +13,10 @@ namespace Biblioteca.Controllers
         }
 
         //READ
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var books = await _service.GetAllAsync();
+            return View(books);
         }
     }
 }

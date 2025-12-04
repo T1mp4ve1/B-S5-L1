@@ -1,5 +1,18 @@
-﻿@{
+﻿@model IEnumerable<Biblioteca.Models.SingleBook>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<h2>Lista dei libri disponibili</h2>
+<h2>Lista dei libri disponibili (@Model.Count())</h2>
+
+<div class="row row-cols-5">
+    @foreach (var b in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <img src="@b.CoverIMG" style="height: 350px;"/>
+            </div>
+        </div>
+    }
+
+</div>
